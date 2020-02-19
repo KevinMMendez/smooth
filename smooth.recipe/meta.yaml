@@ -1,0 +1,30 @@
+package:
+  name: smooth
+  version: 0.1.0
+
+source:
+  path: ../
+
+build:
+  noarch: python
+  number: 0
+  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
+
+requirements:
+  build:
+    - setuptools
+    - python >=3.5
+    - numpy
+    - pandas
+    - scipy
+
+  run:
+    - python >=3.5
+    - numpy
+    - pandas
+    - scipy
+
+about:
+  home: https://github.com/kevinmmendez
+  license: MIT License
+  summary: "Data approximation using a cubic smoothing spline"
