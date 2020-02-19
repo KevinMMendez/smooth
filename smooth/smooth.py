@@ -4,7 +4,10 @@ from scipy.sparse import spdiags
 
 
 def CubicSmoothSpline:
-    """Univariate data approximation using a cubic smoothing spline. This is an implementation of the Fortran SMOOTH from PGS. Values are identical to matlab CSAPS.
+    """
+    Univariate data approximation using a cubic smoothing spline. 
+    This is an implementation of the Fortran SMOOTH from PGS. 
+    Values are identical to matlab CSAPS.
     """
 
     def __init__(self, p=-1):
