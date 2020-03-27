@@ -3,7 +3,7 @@ import pandas as pd
 from scipy.sparse import spdiags
 
 
-def CubicSmoothSpline:
+class CubicSmoothSpline:
     """
     Univariate data approximation using a cubic smoothing spline. 
     This is an implementation of the Fortran SMOOTH from PGS. 
