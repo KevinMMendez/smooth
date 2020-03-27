@@ -8,7 +8,7 @@ def readme():
 
 setup(
     name="smooth",
-    version="0.1.1",
+    version="0.1.2",
     description="Data approximation using a cubic smoothing spline",
     long_description=readme(),
     long_description_content_type='text/markdown',
