@@ -5,8 +5,8 @@ from scipy.sparse import spdiags
 
 class CubicSmoothSpline:
     """
-    Univariate data approximation using a cubic smoothing spline. 
-    This is an implementation of the Fortran SMOOTH from PGS. 
+    Univariate data approximation using a cubic smoothing spline.
+    This is an implementation of the Fortran SMOOTH from PGS.
     Values are identical to matlab CSAPS.
     """
 
@@ -70,19 +70,19 @@ class CubicSmoothSpline:
             if self.p < 0:
                 QtWQ = np.matmul(Qtw.toarray().T, Qtw.toarray())
                 self.p = 1 / (1 + (np.trace(R.toarray())) / (6 * np.trace(QtWQ)))
-                a = 6 * (1 - p) * QtWQ + p * R
+                a = 6 * (1 - self.p) * QtWQ + self.p * R
                 b = np.diff(divdif)
                 u = np.linalg.lstsq(a, b, rcond=None)[0]
             else:
-                a = (6 * (1 - p) * (np.matmul(Qtw.toarray().T, Qtw.toarray()))) + self.p * R
+                a = (6 * (1 - self.p) * (np.matmul(Qtw.toarray().T, Qtw.toarray()))) + self.p * R
                 b = np.diff(divdif)
                 u = np.linalg.lstsq(a, b, rcond=None)[0]
 
             c = np.diff([np.concatenate([[0], u, [0]])]) / dx
             d = np.diff([np.concatenate([[0], c[0], [0]])])
-            y = y - ((6 * (1 - p)) * W * d.T).T[0]
+            y = y - ((6 * (1 - self.p)) * W * d.T).T[0]
 
-            c3 = np.concatenate([[0], p * u, [0]])
+            c3 = np.concatenate([[0], self.p * u, [0]])
             c2 = np.diff(y) / dx - dx * (2 * c3[0: n - 1] + c3[1:n])
 
             output["coefs"] = np.vstack(
@@ -90,7 +90,6 @@ class CubicSmoothSpline:
             ).T
 
         self.output = output
-        self.p = p
         return self
 
     def predict(self, x):
