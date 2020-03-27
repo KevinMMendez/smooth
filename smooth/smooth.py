@@ -13,7 +13,7 @@ class CubicSmoothSpline:
     def __init__(self, p=-1):
         self.p = p
 
-    def fit(x, y):
+    def fit(self, x, y):
         if isinstance(x, pd.Series):
             x = np.array(x)
 
@@ -93,7 +93,7 @@ class CubicSmoothSpline:
         self.p = p
         return self
 
-    def predict(x):
+    def predict(self, x):
         # Put into bins
         newoutput = self.output["breaks"][1:-1]
 
