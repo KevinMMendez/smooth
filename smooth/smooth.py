@@ -98,19 +98,19 @@ class CubicSmoothSpline:
 
         if len(newoutput) == 0:
             # Linear regression as there are two data points
-            newx = x - output["breaks"][0]
-            c = output["coefs"][1]
-            m = output["coefs"][0]
+            newx = x - self.output["breaks"][0]
+            c = self.output["coefs"][1]
+            m = self.output["coefs"][0]
             val = m * newx + c
         else:
             idx = np.digitize(x, newoutput, right=False)
 
             # get initial newx
-            newx = x - output["breaks"][idx]
+            newx = x - self.output["breaks"][idx]
 
             # nested multiplication
-            val = output["coefs"][idx, 0]
-            for i in range(1, len(output["coefs"].T)):
-                val = val * newx + output["coefs"][idx, i]
+            val = self.output["coefs"][idx, 0]
+            for i in range(1, len(self.output["coefs"].T)):
+                val = val * newx + self.output["coefs"][idx, i]
 
         return val
